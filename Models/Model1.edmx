@@ -1,0 +1,680 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Go2inkasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="CODIGOCLIENTE" />
+          </Key>
+          <Property Name="CODIGOCLIENTE" Type="int" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="n_de_Ruc" Type="varchar" MaxLength="11" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="fecha_de_nacimiento" Type="date" />
+        </EntityType>
+        <EntityType Name="Confirmacion">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="apellido" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="fecha_de_nacimiento" Type="date" />
+          <Property Name="CotizacionID" Type="int" />
+        </EntityType>
+        <EntityType Name="ConstanciaPago">
+          <Key>
+            <PropertyRef Name="NUMERO_DE_OPERACION" />
+          </Key>
+          <Property Name="NUMERO_DE_OPERACION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="factura" Type="varchar" MaxLength="100" />
+          <Property Name="VentaID" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Cotizacion">
+          <Key>
+            <PropertyRef Name="NUMEROCOTIZACION" />
+          </Key>
+          <Property Name="NUMEROCOTIZACION" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="nombrecliente" Type="varchar" MaxLength="100" />
+          <Property Name="identificacion_del_cliente" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_de_tour" Type="varchar" MaxLength="100" />
+          <Property Name="cantidad_de_pasajeros" Type="int" />
+          <Property Name="agregados" Type="varchar" MaxLength="100" />
+          <Property Name="costo" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="fecha_de_tour" Type="date" />
+          <Property Name="tipo_de_bicicleta" Type="varchar" MaxLength="50" />
+          <Property Name="ClienteID" Type="int" />
+        </EntityType>
+        <EntityType Name="EncuestaSatisfaccion">
+          <Key>
+            <PropertyRef Name="IDENCUESTA" />
+          </Key>
+          <Property Name="IDENCUESTA" Type="int" Nullable="false" />
+          <Property Name="facilidad_de_uso" Type="int" />
+          <Property Name="grado_de_satisfaccion" Type="int" />
+          <Property Name="ReservaID" Type="int" />
+        </EntityType>
+        <EntityType Name="ReporteVenta">
+          <Key>
+            <PropertyRef Name="CODIGO_DE_REPORTE" />
+          </Key>
+          <Property Name="CODIGO_DE_REPORTE" Type="int" Nullable="false" />
+          <Property Name="NUMERO_DE_OPERACION" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_de_pago" Type="date" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="CODIGOCLIENTE" Type="int" />
+          <Property Name="fecha_de_tour" Type="date" />
+          <Property Name="VentaID" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="CODIGO" Type="int" Nullable="false" />
+          <Property Name="archivo" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_de_tour" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_de_tour" Type="date" />
+          <Property Name="orden_de_compra" Type="varchar" MaxLength="100" />
+          <Property Name="tipo_de_bicicleta" Type="varchar" MaxLength="50" />
+          <Property Name="numero_de_operacion" Type="varchar" MaxLength="100" />
+          <Property Name="costo_de_tour" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="numero_de_paz" Type="int" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="detraccion" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="fecha_de_pago" Type="date" />
+          <Property Name="ConfirmacionID" Type="varchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="CODIGO" Type="int" Nullable="false" />
+          <Property Name="ruta" Type="varchar" MaxLength="100" />
+          <Property Name="duracion" Type="int" />
+          <Property Name="dificultad" Type="varchar" MaxLength="50" />
+          <Property Name="tipo_de_bicicleta" Type="varchar" MaxLength="50" />
+          <Property Name="tiempo" Type="time" Precision="7" />
+          <Property Name="inicio" Type="date" />
+          <Property Name="final" Type="date" />
+          <Property Name="precio" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="contraseña" Type="int" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="NUMERO_DE_OPERACION" />
+          </Key>
+          <Property Name="NUMERO_DE_OPERACION" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="factura" Type="varchar" MaxLength="100" />
+          <Property Name="n_de_ruc" Type="varchar" MaxLength="11" />
+          <Property Name="fecha_de_pago" Type="date" />
+          <Property Name="tipo_de_tour" Type="varchar" MaxLength="100" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="nombre_de_cliente" Type="varchar" MaxLength="100" />
+          <Property Name="metodo_de_pago" Type="varchar" MaxLength="50" />
+          <Property Name="estado_de_venta" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Confirmac__Cotiz__403A8C7D">
+          <End Role="Cotizacion" Type="Self.Cotizacion" Multiplicity="0..1" />
+          <End Role="Confirmacion" Type="Self.Confirmacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotizacion">
+              <PropertyRef Name="NUMEROCOTIZACION" />
+            </Principal>
+            <Dependent Role="Confirmacion">
+              <PropertyRef Name="CotizacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Constanci__Venta__4AB81AF0">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="ConstanciaPago" Type="Self.ConstanciaPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="NUMERO_DE_OPERACION" />
+            </Principal>
+            <Dependent Role="ConstanciaPago">
+              <PropertyRef Name="VentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cotizacio__Clien__3D5E1FD2">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cotizacion" Type="Self.Cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CODIGOCLIENTE" />
+            </Principal>
+            <Dependent Role="Cotizacion">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EncuestaS__Reser__45F365D3">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="0..1" />
+          <End Role="EncuestaSatisfaccion" Type="Self.EncuestaSatisfaccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="CODIGO" />
+            </Principal>
+            <Dependent Role="EncuestaSatisfaccion">
+              <PropertyRef Name="ReservaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteVe__CODIG__4E88ABD4">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="ReporteVenta" Type="Self.ReporteVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CODIGOCLIENTE" />
+            </Principal>
+            <Dependent Role="ReporteVenta">
+              <PropertyRef Name="CODIGOCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteVe__Venta__4D94879B">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="ReporteVenta" Type="Self.ReporteVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="NUMERO_DE_OPERACION" />
+            </Principal>
+            <Dependent Role="ReporteVenta">
+              <PropertyRef Name="VentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__Confirm__4316F928">
+          <End Role="Confirmacion" Type="Self.Confirmacion" Multiplicity="0..1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Confirmacion">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ConfirmacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Go2inkasModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Confirmacion" EntityType="Self.Confirmacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConstanciaPago" EntityType="Self.ConstanciaPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cotizacion" EntityType="Self.Cotizacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EncuestaSatisfaccion" EntityType="Self.EncuestaSatisfaccion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReporteVenta" EntityType="Self.ReporteVenta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Confirmac__Cotiz__403A8C7D" Association="Self.FK__Confirmac__Cotiz__403A8C7D">
+            <End Role="Cotizacion" EntitySet="Cotizacion" />
+            <End Role="Confirmacion" EntitySet="Confirmacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Constanci__Venta__4AB81AF0" Association="Self.FK__Constanci__Venta__4AB81AF0">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="ConstanciaPago" EntitySet="ConstanciaPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cotizacio__Clien__3D5E1FD2" Association="Self.FK__Cotizacio__Clien__3D5E1FD2">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Cotizacion" EntitySet="Cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EncuestaS__Reser__45F365D3" Association="Self.FK__EncuestaS__Reser__45F365D3">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="EncuestaSatisfaccion" EntitySet="EncuestaSatisfaccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteVe__CODIG__4E88ABD4" Association="Self.FK__ReporteVe__CODIG__4E88ABD4">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="ReporteVenta" EntitySet="ReporteVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteVe__Venta__4D94879B" Association="Self.FK__ReporteVe__Venta__4D94879B">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="ReporteVenta" EntitySet="ReporteVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__Confirm__4316F928" Association="Self.FK__Reserva__Confirm__4316F928">
+            <End Role="Confirmacion" EntitySet="Confirmacion" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Go2inkasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="CODIGOCLIENTE" />
+          </Key>
+          <Property Name="CODIGOCLIENTE" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="n_de_Ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_de_nacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Cotizacion" Relationship="Self.FK__Cotizacio__Clien__3D5E1FD2" FromRole="Cliente" ToRole="Cotizacion" />
+          <NavigationProperty Name="ReporteVenta" Relationship="Self.FK__ReporteVe__CODIG__4E88ABD4" FromRole="Cliente" ToRole="ReporteVenta" />
+        </EntityType>
+        <EntityType Name="Confirmacion">
+          <Key>
+            <PropertyRef Name="DNI" />
+          </Key>
+          <Property Name="DNI" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_de_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="CotizacionID" Type="Int32" />
+          <NavigationProperty Name="Cotizacion" Relationship="Self.FK__Confirmac__Cotiz__403A8C7D" FromRole="Confirmacion" ToRole="Cotizacion" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__Reserva__Confirm__4316F928" FromRole="Confirmacion" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="ConstanciaPago">
+          <Key>
+            <PropertyRef Name="NUMERO_DE_OPERACION" />
+          </Key>
+          <Property Name="NUMERO_DE_OPERACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VentaID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Constanci__Venta__4AB81AF0" FromRole="ConstanciaPago" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Cotizacion">
+          <Key>
+            <PropertyRef Name="NUMEROCOTIZACION" />
+          </Key>
+          <Property Name="NUMEROCOTIZACION" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="nombrecliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="identificacion_del_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_de_tour" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_de_pasajeros" Type="Int32" />
+          <Property Name="agregados" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="costo" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha_de_tour" Type="DateTime" Precision="0" />
+          <Property Name="tipo_de_bicicleta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ClienteID" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cotizacio__Clien__3D5E1FD2" FromRole="Cotizacion" ToRole="Cliente" />
+          <NavigationProperty Name="Confirmacion" Relationship="Self.FK__Confirmac__Cotiz__403A8C7D" FromRole="Cotizacion" ToRole="Confirmacion" />
+        </EntityType>
+        <EntityType Name="EncuestaSatisfaccion">
+          <Key>
+            <PropertyRef Name="IDENCUESTA" />
+          </Key>
+          <Property Name="IDENCUESTA" Type="Int32" Nullable="false" />
+          <Property Name="facilidad_de_uso" Type="Int32" />
+          <Property Name="grado_de_satisfaccion" Type="Int32" />
+          <Property Name="ReservaID" Type="Int32" />
+          <NavigationProperty Name="Reserva" Relationship="Self.FK__EncuestaS__Reser__45F365D3" FromRole="EncuestaSatisfaccion" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="ReporteVenta">
+          <Key>
+            <PropertyRef Name="CODIGO_DE_REPORTE" />
+          </Key>
+          <Property Name="CODIGO_DE_REPORTE" Type="Int32" Nullable="false" />
+          <Property Name="NUMERO_DE_OPERACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_de_pago" Type="DateTime" Precision="0" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="CODIGOCLIENTE" Type="Int32" />
+          <Property Name="fecha_de_tour" Type="DateTime" Precision="0" />
+          <Property Name="VentaID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__ReporteVe__CODIG__4E88ABD4" FromRole="ReporteVenta" ToRole="Cliente" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__ReporteVe__Venta__4D94879B" FromRole="ReporteVenta" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="CODIGO" Type="Int32" Nullable="false" />
+          <Property Name="archivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_de_tour" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_de_tour" Type="DateTime" Precision="0" />
+          <Property Name="orden_de_compra" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_de_bicicleta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="numero_de_operacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="costo_de_tour" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="numero_de_paz" Type="Int32" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="detraccion" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="fecha_de_pago" Type="DateTime" Precision="0" />
+          <Property Name="ConfirmacionID" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Confirmacion" Relationship="Self.FK__Reserva__Confirm__4316F928" FromRole="Reserva" ToRole="Confirmacion" />
+          <NavigationProperty Name="EncuestaSatisfaccion" Relationship="Self.FK__EncuestaS__Reser__45F365D3" FromRole="Reserva" ToRole="EncuestaSatisfaccion" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="CODIGO" />
+          </Key>
+          <Property Name="CODIGO" Type="Int32" Nullable="false" />
+          <Property Name="ruta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="duracion" Type="Int32" />
+          <Property Name="dificultad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_de_bicicleta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tiempo" Type="Time" Precision="7" />
+          <Property Name="inicio" Type="DateTime" Precision="0" />
+          <Property Name="final" Type="DateTime" Precision="0" />
+          <Property Name="precio" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="USUARIO">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+          </Key>
+          <Property Name="EMAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contraseña" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="NUMERO_DE_OPERACION" />
+          </Key>
+          <Property Name="NUMERO_DE_OPERACION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="factura" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="n_de_ruc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_de_pago" Type="DateTime" Precision="0" />
+          <Property Name="tipo_de_tour" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="nombre_de_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="metodo_de_pago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado_de_venta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ConstanciaPago" Relationship="Self.FK__Constanci__Venta__4AB81AF0" FromRole="Venta" ToRole="ConstanciaPago" />
+          <NavigationProperty Name="ReporteVenta" Relationship="Self.FK__ReporteVe__Venta__4D94879B" FromRole="Venta" ToRole="ReporteVenta" />
+        </EntityType>
+        <Association Name="FK__Cotizacio__Clien__3D5E1FD2">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Cotizacion" Type="Self.Cotizacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CODIGOCLIENTE" />
+            </Principal>
+            <Dependent Role="Cotizacion">
+              <PropertyRef Name="ClienteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteVe__CODIG__4E88ABD4">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="ReporteVenta" Type="Self.ReporteVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="CODIGOCLIENTE" />
+            </Principal>
+            <Dependent Role="ReporteVenta">
+              <PropertyRef Name="CODIGOCLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Confirmac__Cotiz__403A8C7D">
+          <End Role="Cotizacion" Type="Self.Cotizacion" Multiplicity="0..1" />
+          <End Role="Confirmacion" Type="Self.Confirmacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cotizacion">
+              <PropertyRef Name="NUMEROCOTIZACION" />
+            </Principal>
+            <Dependent Role="Confirmacion">
+              <PropertyRef Name="CotizacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reserva__Confirm__4316F928">
+          <End Role="Confirmacion" Type="Self.Confirmacion" Multiplicity="0..1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Confirmacion">
+              <PropertyRef Name="DNI" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="ConfirmacionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Constanci__Venta__4AB81AF0">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="ConstanciaPago" Type="Self.ConstanciaPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="NUMERO_DE_OPERACION" />
+            </Principal>
+            <Dependent Role="ConstanciaPago">
+              <PropertyRef Name="VentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__EncuestaS__Reser__45F365D3">
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="0..1" />
+          <End Role="EncuestaSatisfaccion" Type="Self.EncuestaSatisfaccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserva">
+              <PropertyRef Name="CODIGO" />
+            </Principal>
+            <Dependent Role="EncuestaSatisfaccion">
+              <PropertyRef Name="ReservaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ReporteVe__Venta__4D94879B">
+          <End Role="Venta" Type="Self.Venta" Multiplicity="0..1" />
+          <End Role="ReporteVenta" Type="Self.ReporteVenta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Venta">
+              <PropertyRef Name="NUMERO_DE_OPERACION" />
+            </Principal>
+            <Dependent Role="ReporteVenta">
+              <PropertyRef Name="VentaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Go2inkasEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Confirmacion" EntityType="Self.Confirmacion" />
+          <EntitySet Name="ConstanciaPago" EntityType="Self.ConstanciaPago" />
+          <EntitySet Name="Cotizacion" EntityType="Self.Cotizacion" />
+          <EntitySet Name="EncuestaSatisfaccion" EntityType="Self.EncuestaSatisfaccion" />
+          <EntitySet Name="ReporteVenta" EntityType="Self.ReporteVenta" />
+          <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+          <EntitySet Name="Tour" EntityType="Self.Tour" />
+          <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <AssociationSet Name="FK__Cotizacio__Clien__3D5E1FD2" Association="Self.FK__Cotizacio__Clien__3D5E1FD2">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Cotizacion" EntitySet="Cotizacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteVe__CODIG__4E88ABD4" Association="Self.FK__ReporteVe__CODIG__4E88ABD4">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="ReporteVenta" EntitySet="ReporteVenta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Confirmac__Cotiz__403A8C7D" Association="Self.FK__Confirmac__Cotiz__403A8C7D">
+            <End Role="Cotizacion" EntitySet="Cotizacion" />
+            <End Role="Confirmacion" EntitySet="Confirmacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reserva__Confirm__4316F928" Association="Self.FK__Reserva__Confirm__4316F928">
+            <End Role="Confirmacion" EntitySet="Confirmacion" />
+            <End Role="Reserva" EntitySet="Reserva" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Constanci__Venta__4AB81AF0" Association="Self.FK__Constanci__Venta__4AB81AF0">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="ConstanciaPago" EntitySet="ConstanciaPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK__EncuestaS__Reser__45F365D3" Association="Self.FK__EncuestaS__Reser__45F365D3">
+            <End Role="Reserva" EntitySet="Reserva" />
+            <End Role="EncuestaSatisfaccion" EntitySet="EncuestaSatisfaccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ReporteVe__Venta__4D94879B" Association="Self.FK__ReporteVe__Venta__4D94879B">
+            <End Role="Venta" EntitySet="Venta" />
+            <End Role="ReporteVenta" EntitySet="ReporteVenta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Go2inkasModelStoreContainer" CdmEntityContainer="Go2inkasEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="Go2inkasModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="CODIGOCLIENTE" ColumnName="CODIGOCLIENTE" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="n_de_Ruc" ColumnName="n_de_Ruc" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fecha_de_nacimiento" ColumnName="fecha_de_nacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Confirmacion">
+            <EntityTypeMapping TypeName="Go2inkasModel.Confirmacion">
+              <MappingFragment StoreEntitySet="Confirmacion">
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="fecha_de_nacimiento" ColumnName="fecha_de_nacimiento" />
+                <ScalarProperty Name="CotizacionID" ColumnName="CotizacionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConstanciaPago">
+            <EntityTypeMapping TypeName="Go2inkasModel.ConstanciaPago">
+              <MappingFragment StoreEntitySet="ConstanciaPago">
+                <ScalarProperty Name="NUMERO_DE_OPERACION" ColumnName="NUMERO_DE_OPERACION" />
+                <ScalarProperty Name="factura" ColumnName="factura" />
+                <ScalarProperty Name="VentaID" ColumnName="VentaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cotizacion">
+            <EntityTypeMapping TypeName="Go2inkasModel.Cotizacion">
+              <MappingFragment StoreEntitySet="Cotizacion">
+                <ScalarProperty Name="NUMEROCOTIZACION" ColumnName="NUMEROCOTIZACION" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="nombrecliente" ColumnName="nombrecliente" />
+                <ScalarProperty Name="identificacion_del_cliente" ColumnName="identificacion_del_cliente" />
+                <ScalarProperty Name="tipo_de_tour" ColumnName="tipo_de_tour" />
+                <ScalarProperty Name="cantidad_de_pasajeros" ColumnName="cantidad_de_pasajeros" />
+                <ScalarProperty Name="agregados" ColumnName="agregados" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+                <ScalarProperty Name="fecha_de_tour" ColumnName="fecha_de_tour" />
+                <ScalarProperty Name="tipo_de_bicicleta" ColumnName="tipo_de_bicicleta" />
+                <ScalarProperty Name="ClienteID" ColumnName="ClienteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EncuestaSatisfaccion">
+            <EntityTypeMapping TypeName="Go2inkasModel.EncuestaSatisfaccion">
+              <MappingFragment StoreEntitySet="EncuestaSatisfaccion">
+                <ScalarProperty Name="IDENCUESTA" ColumnName="IDENCUESTA" />
+                <ScalarProperty Name="facilidad_de_uso" ColumnName="facilidad_de_uso" />
+                <ScalarProperty Name="grado_de_satisfaccion" ColumnName="grado_de_satisfaccion" />
+                <ScalarProperty Name="ReservaID" ColumnName="ReservaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReporteVenta">
+            <EntityTypeMapping TypeName="Go2inkasModel.ReporteVenta">
+              <MappingFragment StoreEntitySet="ReporteVenta">
+                <ScalarProperty Name="CODIGO_DE_REPORTE" ColumnName="CODIGO_DE_REPORTE" />
+                <ScalarProperty Name="NUMERO_DE_OPERACION" ColumnName="NUMERO_DE_OPERACION" />
+                <ScalarProperty Name="fecha_de_pago" ColumnName="fecha_de_pago" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="CODIGOCLIENTE" ColumnName="CODIGOCLIENTE" />
+                <ScalarProperty Name="fecha_de_tour" ColumnName="fecha_de_tour" />
+                <ScalarProperty Name="VentaID" ColumnName="VentaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="Go2inkasModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+                <ScalarProperty Name="tipo_de_tour" ColumnName="tipo_de_tour" />
+                <ScalarProperty Name="fecha_de_tour" ColumnName="fecha_de_tour" />
+                <ScalarProperty Name="orden_de_compra" ColumnName="orden_de_compra" />
+                <ScalarProperty Name="tipo_de_bicicleta" ColumnName="tipo_de_bicicleta" />
+                <ScalarProperty Name="numero_de_operacion" ColumnName="numero_de_operacion" />
+                <ScalarProperty Name="costo_de_tour" ColumnName="costo_de_tour" />
+                <ScalarProperty Name="numero_de_paz" ColumnName="numero_de_paz" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="detraccion" ColumnName="detraccion" />
+                <ScalarProperty Name="fecha_de_pago" ColumnName="fecha_de_pago" />
+                <ScalarProperty Name="ConfirmacionID" ColumnName="ConfirmacionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tour">
+            <EntityTypeMapping TypeName="Go2inkasModel.Tour">
+              <MappingFragment StoreEntitySet="Tour">
+                <ScalarProperty Name="CODIGO" ColumnName="CODIGO" />
+                <ScalarProperty Name="ruta" ColumnName="ruta" />
+                <ScalarProperty Name="duracion" ColumnName="duracion" />
+                <ScalarProperty Name="dificultad" ColumnName="dificultad" />
+                <ScalarProperty Name="tipo_de_bicicleta" ColumnName="tipo_de_bicicleta" />
+                <ScalarProperty Name="tiempo" ColumnName="tiempo" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="final" ColumnName="final" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIO">
+            <EntityTypeMapping TypeName="Go2inkasModel.USUARIO">
+              <MappingFragment StoreEntitySet="USUARIO">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="Go2inkasModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="NUMERO_DE_OPERACION" ColumnName="NUMERO_DE_OPERACION" />
+                <ScalarProperty Name="factura" ColumnName="factura" />
+                <ScalarProperty Name="n_de_ruc" ColumnName="n_de_ruc" />
+                <ScalarProperty Name="fecha_de_pago" ColumnName="fecha_de_pago" />
+                <ScalarProperty Name="tipo_de_tour" ColumnName="tipo_de_tour" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="nombre_de_cliente" ColumnName="nombre_de_cliente" />
+                <ScalarProperty Name="metodo_de_pago" ColumnName="metodo_de_pago" />
+                <ScalarProperty Name="estado_de_venta" ColumnName="estado_de_venta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
